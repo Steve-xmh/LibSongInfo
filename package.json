@@ -1,0 +1,18 @@
+{
+  "name": "libsonginfo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "GPL-3.0",
+  "private": true,
+  "scripts": {
+    "dist": "node build.js --dist",
+    "build": "node build.js",
+    "fmt": "rome format --write ./src ./build.js",
+    "build:dev": "node build.js --dev",
+    "build:dry": "esbuild ./src/index.tsx ./src/startup_script.ts ./src/index.css --define:DEBUG=false --minify --bundle --sourcemap --outdir=./out --target=chrome91"
+  },
+  "dependencies": {
+    "esbuild": "^0.17.3",
+    "jszip": "^3.10.1"
+  }
+}
