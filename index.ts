@@ -54,7 +54,7 @@ interface AudioEndInfo {
 }
 
 plugin.onLoad((injectPlugin) => {
-    const plugin = injectPlugin.mainPlugin
+	const plugin = injectPlugin.mainPlugin;
 	plugin.trackPlaying = getPlayingSong();
 	plugin.autioId = "";
 	plugin.playState = PlayState.Pausing;
@@ -68,12 +68,12 @@ plugin.onLoad((injectPlugin) => {
 		plugin.trackPlaying?.data?.id ||
 		0;
 
-        const setAudioId = (audioId: string) => {
-            if (audioId !== plugin.autioId) {
-                plugin.autioId = audioId;
-                plugin.dispatchEvent(new Event("audio-id-updated"));
-            }
-        };
+	const setAudioId = (audioId: string) => {
+		if (audioId !== plugin.autioId) {
+			plugin.autioId = audioId;
+			plugin.dispatchEvent(new Event("audio-id-updated"));
+		}
+	};
 
 	const setDuration = (duration: number) => {
 		if (duration !== plugin.duration) {
@@ -112,14 +112,14 @@ plugin.onLoad((injectPlugin) => {
 		setLoadProgress(loadProgress);
 		setPlayProgress(progress);
 	};
-    
-    const refreshTrackPlaying = () => {
-        const nowPlaying = getPlayingSong();
-        if (nowPlaying !== plugin.trackPlaying) {
-            plugin.trackPlaying = nowPlaying;
+
+	const refreshTrackPlaying = () => {
+		const nowPlaying = getPlayingSong();
+		if (nowPlaying !== plugin.trackPlaying) {
+			plugin.trackPlaying = nowPlaying;
 			plugin.dispatchEvent(new Event("playing-updated"));
-        }
-    }
+		}
+	};
 
 	const onLoad = (audioId: string, info: AudioLoadInfo) => {
 		const duration = info?.duration;
@@ -128,13 +128,13 @@ plugin.onLoad((injectPlugin) => {
 		} else {
 			setDuration(-1);
 		}
-        refreshTrackPlaying();
+		refreshTrackPlaying();
 		setAudioId(audioId);
 	};
 
 	const onEnd = (audioId: string, _info: AudioEndInfo) => {
 		setAudioId(audioId);
-        refreshTrackPlaying();
+		refreshTrackPlaying();
 		setTimeout(() => {
 			setAudioId(plugin.getMusicId().toString());
 		}, 200);
