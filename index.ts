@@ -155,6 +155,16 @@ plugin.onLoad((injectPlugin) => {
 		}
 	};
 
+	window.addEventListener(
+		"load",
+		() => {
+			plugin.trackPlaying = plugin.getPlaying();
+		},
+		{
+			once: true,
+		},
+	);
+
 	legacyNativeCmder.appendRegisterCall(
 		"PlayProgress",
 		"audioplayer",
